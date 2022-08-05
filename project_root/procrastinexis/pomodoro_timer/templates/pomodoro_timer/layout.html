@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>ProcrastiNexis</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Own CSS -->
+        <link href="{% static 'pomodoro_timer/styles.css' %}" rel="stylesheet">
+        <!-- Responsiveness -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Javascript -->
+        {% block script %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <!-- Set up Navigation Bar on Top of Webpage -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/Logo.png' %}" alt="Brand Logo" width="5" height="5">
+                ProcrastiNexis
+            </a>
+            <!-- Set up Toggler for Responsive Behaviour -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="Supported Content for Navbar">
+                <!-- Picture for Button -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Buttons to be present in Toggler -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <!-- Home Button {Timer + Music} -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <img src="{% static 'images/Home.png' %}" alt="Home" width="5" height="5">
+                            Home
+                        </a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+
+                        <!-- Study Groups -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <img src="{% static 'images/study_group.png' %}" alt="Study Group" width="5" height="5">
+                                Study Group
+                            </a>
+                        </li>
+
+                        <!-- Forum -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <img src="{% static 'images/Seminar.png' %}" alt="Seminars" width="5" height="5">
+                                Seminars
+                            </a>
+
+                        </li>
+
+                        <!-- Profile Page / Settings -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">
+                                <img src="{% static 'images/Profile.png' %}" alt="Profile" width="5" height="5">
+                                {{ user.username }}'s Profile
+                            </a>
+
+                        </li>
+
+                        <!-- Log Out -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Log Out</a>
+                        </li>
+
+                    {% else %}
+
+                        <!-- Log In -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Log In</a>
+                        </li>
+
+                        <!-- Register -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Register</a>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Body for Content -->
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

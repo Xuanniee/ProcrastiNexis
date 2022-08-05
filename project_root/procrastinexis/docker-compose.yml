@@ -1,0 +1,20 @@
+# Using Docker Compose to run multiple containers together
+
+# Docker Compose
+version: '3'
+
+# Services outlined
+services:
+    # Database Container based on existing Postgres
+    db:
+        image: postgres
+
+    # Server's Container
+    web:
+        # DockerFile in Current Directory
+        build: .
+        volumes: 
+            - .:/usr/src/app
+        # Linking Container Port to PC Port
+        ports:
+            - "8000:8000"
